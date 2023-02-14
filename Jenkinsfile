@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Install dependencies') {
       steps {
-        sh 'npm install react-scripts'
+        sh 'npm install --force'
       }
     }
 
