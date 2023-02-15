@@ -1,21 +1,30 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Build App'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing App'
-            }
-        }
-        stage('Production') {
-            steps {
-                echo 'Production App'
-            }
-        }
+  agent any
+  tools {nodejs "nodejs"}
+  stages {
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install --force'
+      }
     }
+
+    stage('Build') {
+      steps {
+        sh 'npm run build'
+      }
+    }
+
+    stage('Testing') {
+      steps {
+        echo 'Testing '
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh 'npm start'
+      }
+    }
+
+  }
 }
